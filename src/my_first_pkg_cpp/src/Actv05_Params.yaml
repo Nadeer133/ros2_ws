@@ -1,0 +1,6 @@
+/robot_news_station1:
+  ros__parameters:
+    Robot_name: "R1D1"
+/robot_news_station2:
+  ros__parameters:
+    Robot_name: "R2D2"

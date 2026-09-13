@@ -1,0 +1,8 @@
+<launch>
+    <node pkg="turtlesim" exec="turtlesim_node" >
+    </node>
+    <node pkg="my_first_pkg_cpp" exec="Actv07_turtlesimProj_2" >
+    </node>
+    <node pkg="my_first_pkg_cpp" exec="Actv07_turtlesimProj" >
+    </node>
+</launch>

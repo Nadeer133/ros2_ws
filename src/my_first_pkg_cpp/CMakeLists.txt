@@ -1,0 +1,75 @@
+cmake_minimum_required(VERSION 3.8)
+project(my_first_pkg_cpp)
+
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
+
+# find dependencies
+find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(example_interfaces REQUIRED)
+find_package(my_ros2_interfaces REQUIRED)
+find_package(turtlesim REQUIRED)
+find_package(geometry_msgs REQUIRED)
+
+add_executable(cpp_first_node_oop src/my_first_cpp_oop_node.cpp)
+ament_target_dependencies(cpp_first_node_oop rclcpp)
+add_executable(robot_news_station_PUB src/robot_news_station_PUB.cpp)
+ament_target_dependencies(robot_news_station_PUB rclcpp example_interfaces)
+add_executable(robot_news_station_SUB src/robot_news_station_SUB.cpp)
+ament_target_dependencies(robot_news_station_SUB rclcpp example_interfaces)
+add_executable(Actv02_Node1_Pub src/Actv02_Node1_Pub.cpp)
+ament_target_dependencies(Actv02_Node1_Pub rclcpp example_interfaces)
+add_executable(Actv02_Node2_Sub_Pub src/Actv02_Node2_Sub_Pub.cpp)
+ament_target_dependencies(Actv02_Node2_Sub_Pub rclcpp example_interfaces)
+add_executable(add_two_ints_client_NoOOP src/add_two_ints_client_NoOOP.cpp)
+ament_target_dependencies(add_two_ints_client_NoOOP rclcpp example_interfaces)
+add_executable(add_two_ints_server src/add_two_ints_server.cpp)
+ament_target_dependencies(add_two_ints_server rclcpp example_interfaces)
+add_executable(add_two_ints_client_OOP src/add_two_ints_client_OOP.cpp)
+ament_target_dependencies(add_two_ints_client_OOP rclcpp example_interfaces)
+add_executable(Actv03_Node2_Sub_Pub_Srv src/Actv03_Node2_Sub_Pub_Srv.cpp)
+ament_target_dependencies(Actv03_Node2_Sub_Pub_Srv rclcpp example_interfaces)
+add_executable(Actv03_Node1_Pub_Client src/Actv03_Node1_Pub_Client.cpp)
+ament_target_dependencies(Actv03_Node1_Pub_Client rclcpp example_interfaces)
+add_executable(CustomMsgChk src/CustomMsgChk.cpp)
+ament_target_dependencies(CustomMsgChk rclcpp my_ros2_interfaces)
+add_executable(Actv04_BatterNode_Client src/Actv04_BatterNode_Client.cpp)
+ament_target_dependencies(Actv04_BatterNode_Client rclcpp my_ros2_interfaces)
+add_executable(Actc04_LedPanelNode_Server src/Actc04_LedPanelNode_Server.cpp)
+ament_target_dependencies(Actc04_LedPanelNode_Server rclcpp my_ros2_interfaces)
+add_executable(Actv05_Params src/Actv05_Params.cpp)
+ament_target_dependencies(Actv05_Params rclcpp example_interfaces)
+add_executable(Actv05_LedPanelNode src/Actv05_LedPanelNode.cpp)
+ament_target_dependencies(Actv05_LedPanelNode rclcpp my_ros2_interfaces)
+add_executable(Actv06_robot_news_station_PUB src/Actv06_robot_news_station_PUB.cpp)
+ament_target_dependencies(Actv06_robot_news_station_PUB rclcpp example_interfaces)
+add_executable(Actv07_turtlesimProj src/Actv07_turtlesimProj.cpp)
+ament_target_dependencies(Actv07_turtlesimProj rclcpp my_ros2_interfaces turtlesim)
+add_executable(Actv07_turtlesimProj_2 src/Actv07_turtlesimProj_2.cpp)
+ament_target_dependencies(Actv07_turtlesimProj_2 rclcpp my_ros2_interfaces turtlesim geometry_msgs)
+
+install(TARGETS
+  cpp_first_node_oop
+  robot_news_station_PUB
+  robot_news_station_SUB
+  Actv02_Node1_Pub
+  Actv02_Node2_Sub_Pub
+  add_two_ints_client_NoOOP
+  add_two_ints_server
+  add_two_ints_client_OOP
+  Actv03_Node2_Sub_Pub_Srv
+  Actv03_Node1_Pub_Client
+  CustomMsgChk
+  Actv04_BatterNode_Client
+  Actc04_LedPanelNode_Server
+  Actv05_Params
+  Actv05_LedPanelNode
+  Actv06_robot_news_station_PUB
+  Actv07_turtlesimProj
+  Actv07_turtlesimProj_2
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+ament_package()

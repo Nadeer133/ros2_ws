@@ -1,0 +1,35 @@
+# Activity Summary: ROS 2 Node Development
+## Project: Multi-Node Communication and Logic
+
+## 1. Overview
+This document summarizes the development of a ROS 2 system involving two primary nodes designed to communicate via a shared topic. The objective was to implement a publisher-subscriber architecture where one node publishes values and the second node subscribes, processes, and re-publishes the results.
+
+## 2. Node Components
+
+### A. Publisher Node (Node 1)
+* **Goal:** Initialize and broadcast a steady stream of data to a specific topic.
+* **Implementation:** Created a class `Num_Pub` inheriting from `rclcpp::Node`.
+* **Key Learning:** Successfully used a timer to trigger publishing events and defined message types (`example_interfaces/msg/Int64`) correctly.
+
+### B. Subscriber & Publisher Node (Node 2)
+* **Goal:** Listen for data, update an internal counter, and publish the aggregated result.
+* **Implementation:** Created a class `Num_Count`.
+* **Logic:** * Subscribes to the same topic as Node 1.
+    * Uses a callback function (`updatedata`) to perform mathematical accumulation.
+    * Uses a second timer to broadcast the result (`publishdata`).
+* **Key Learning:** Nodes can be both publishers and subscribers simultaneously. Understood the necessity of separating the topic name (the pipe) from the message data (the content).
+
+## 3. Technical Challenges & Solutions
+* **CLI Syntax:** Resolved `UnknownROSArgsError` by ensuring the `-r` flag precedes every remapping argument.
+* **C++ Compiler Warnings:** Addressed type-mismatch warnings in `RCLCPP_INFO` by matching format specifiers (`%ld`) to the system's `long int` data types.
+* **Build Errors:** Resolved `add_executable` failures by removing special characters (specifically `&`) from file and target names in `CMakeLists.txt`.
+* **Logic Conflicts:** Identified a "feedback loop" where publishing to the same topic as the subscriber caused unintended recursive behavior. Learned the importance of using distinct topics for input and output.
+
+## 4. Concepts Mastered
+* **Node Discovery:** Understanding how ROS 2 middleware (DDS) connects nodes via topic names and message types.
+* **Callback Queues:** Understanding how QoS (Quality of Service) settings handle high-frequency data.
+* **Development Workflow:** Best practices for debugging with `ros2 topic echo`, `ros2 topic info`, and `rqt_graph`.
+
+## 5. Next Steps
+* Refactor to use separate topics to avoid the feedback loop.
+* Explore ROS 2 Parameters to change the publishing frequency or the initial count value at runtime.

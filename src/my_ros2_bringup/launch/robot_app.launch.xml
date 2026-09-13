@@ -1,0 +1,26 @@
+<launch>
+    <node pkg="my_first_pkg_cpp" exec="Actv06_robot_news_station_PUB" name="robot_news_station_giskard">
+        <!-- <remap from="/number_upd" to="/my_number_upd" /> 
+        <param name="Data" value="7" /> -->
+        <!-- <param name="Timer" value="3" /> -->
+        <param from="$(find-pkg-share my_ros2_bringup)/config/robot_app.yaml" />
+    </node>
+    <node pkg="my_first_pkg_cpp" exec="Actv06_robot_news_station_PUB" name="robot_news_station_bb8">
+        <!-- <remap from="/number_upd" to="/my_number_upd" /> -->
+        <param from="$(find-pkg-share my_ros2_bringup)/config/robot_app.yaml" />
+    </node>
+    <node pkg="my_first_pkg_cpp" exec="Actv06_robot_news_station_PUB" name="robot_news_station_daneel">
+        <!-- <remap from="/number_upd" to="/my_number_upd" /> -->
+        <param from="$(find-pkg-share my_ros2_bringup)/config/robot_app.yaml" />
+    </node>
+    <node pkg="my_first_pkg_cpp" exec="Actv06_robot_news_station_PUB" name="robot_news_station_jander">
+        <!-- <remap from="/number_upd" to="/my_number_upd" /> -->
+        <param from="$(find-pkg-share my_ros2_bringup)/config/robot_app.yaml" />
+    </node>
+    <node pkg="my_first_pkg_cpp" exec="Actv06_robot_news_station_PUB" name="robot_news_station_c3po">
+        <!-- <remap from="/number_upd" to="/my_number_upd" /> -->
+        <param from="$(find-pkg-share my_ros2_bringup)/config/robot_app.yaml" />
+    </node>
+    <node pkg="my_first_pkg_cpp" exec="robot_news_station_SUB">
+    </node>
+</launch>

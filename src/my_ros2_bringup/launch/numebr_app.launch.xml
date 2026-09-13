@@ -1,0 +1,11 @@
+<launch>
+    <node pkg="my_first_pkg_cpp" exec="Actv02_Node1_Pub" name="my_number_publisher">
+        <remap from="/number_upd" to="/my_number_upd" /> 
+        <!-- <param name="Data" value="7" />
+        <param name="Timer" value="3" /> -->
+        <param from="$(find-pkg-share my_ros2_bringup)/config/number_app.yaml" />
+    </node>
+    <node pkg="my_first_pkg_cpp" exec="Actv02_Node2_Sub_Pub" name="my_number_counter">
+        <remap from="/number_upd" to="/my_number_upd" />
+    </node>
+</launch>

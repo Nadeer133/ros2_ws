@@ -1,0 +1,6 @@
+# This service contatins a Request that will have two members: Led_no and Led_state
+# Followed by a response: status
+int8 ledno
+bool ledstate
+---
+string status 

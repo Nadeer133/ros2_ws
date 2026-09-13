@@ -1,0 +1,34 @@
+# Summary: ROS 2 Service-Client and Publisher-Subscriber Implementation
+
+## Overview
+This document summarizes the development of a ROS 2 system that integrates message publishing, subscription, and service-based state management. The project consists of two nodes: `number_publisher` (Client/Publisher) and `number_counter` (Server/Subscriber).
+
+## Node 1: `number_publisher` (Publisher & Service Client)
+This node is responsible for two primary tasks:
+1. **Publishing Data:** It publishes an `Int64` message with a value of 10 to the `/number` topic every 1 second.
+2. **Managing Counter State:** It acts as a Service Client. Every 5 seconds, it automatically sends a `SetBool` service request to the `/reset_counter` service to reset the accumulation count maintained by the server.
+
+### Key Logic:
+* **Timers:** Uses two separate `rclcpp::TimerBase` objects to manage publishing and service-calling independently without blocking each other.
+* **Asynchronous Service Calls:** Utilizes `client_->async_send_request` to send requests to the server without pausing the node's main execution loop.
+* **Response Handling:** A callback function (`callbackreset_counter`) handles the service result, using a `SharedFuture` to extract the server's response.
+
+## Node 2: `number_counter` (Subscriber & Service Server)
+This node performs the following tasks:
+1. **State Accumulation:** Subscribes to the `/number` topic and maintains a running counter (stored in `counter_`), adding the incoming value to the current total.
+2. **Result Publication:** Publishes the accumulated `counter_` value to the `/number_count` topic every 1 second.
+3. **Service Management:** Hosts the `/reset_counter` service.
+
+### Key Logic:
+* **Subscriber Callback:** The `updatedata` function is triggered every time a message is received on `/number`, ensuring real-time accumulation of the counter.
+* **Service Callback:** The `resetcounter` function checks the incoming boolean flag from the request. If true, it resets the local `counter_.data` to 0 and fills the service response (`success` and `message`) to confirm the action to the client.
+
+## Architectural Interaction
+This design demonstrates a clear separation of concerns:
+* **Communication:** Nodes communicate asynchronously, ensuring that the publisher node can remain active regardless of the server's processing time.
+* **Control:** By embedding a client within a publisher node, we created an automated control loop where the publisher not only sends data but also enforces the reset condition for the counter node.
+
+## Key Concepts Used
+* **`std::bind` & `placeholders`:** Used to link class member functions to ROS 2 lifecycle events (timers, subscribers, services, and service clients).
+* **`std::shared_ptr`:** Used extensively for memory management of ROS 2 resources, ensuring that messages and service structures remain valid until processing is complete.
+* **`SharedFuture`:** Enables non-blocking service responses, critical for maintaining responsive node execution.

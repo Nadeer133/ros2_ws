@@ -1,0 +1,8 @@
+/led_panel1:
+  ros__parameters:
+    led_states: [100,100,100]
+    led_On/Off: 1
+/led_panel2:
+  ros__parameters:
+    led_states: [200,200,200]
+    led_On/Off: 1
