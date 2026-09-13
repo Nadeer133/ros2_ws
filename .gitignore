@@ -1,0 +1,18 @@
+# ROS 2 build artifacts
+build/
+install/
+log/
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+
+# Python-specific files (common in ROS 2)
+__pycache__/
+*.pyc
+
+# Temporary or local configuration files
+# (Optional) Add your own custom files here if they shouldn't be tracked
