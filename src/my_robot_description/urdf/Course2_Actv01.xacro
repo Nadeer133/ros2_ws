@@ -15,9 +15,9 @@
     <xacro:property name="hand_length" value="0.3" />
 
     <xacro:include filename="common_properties.xacro"/>
-    <!-- <xacro:include filename="mobile_base.xacro"/>
+    <xacro:include filename="mobile_base.xacro"/>
     <xacro:include filename="mobile_base_gazebo.xacro"/>
-    <xacro:include filename="camera.xacro"/> -->
+    <xacro:include filename="camera.xacro"/>
     <xacro:include filename="ros2_L2_finalproj_Arm.xacro"/>
     <xacro:include filename="ros2_L2_finalproj_Arm_gazebo.xacro"/>
     
