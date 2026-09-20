@@ -23,10 +23,10 @@
                 <geometry>
                     <cylinder radius="${forearm_radius}" length="${forearm_length}"/>
                 </geometry>
-                <origin xyz="0 0 ${(forearm_length)/2}" rpy="0 0 0"/>
+                <origin xyz="0 0 ${forearm_length/2}" rpy="0 0 0"/>
                 <material name="yellow"/>
             </visual>
-            <xacro:forearm_inertia m="0.3" r="${forearm_radius}" h="${forearm_length}" o_xyz="0 0 0" o_rpy="0 0 0" />
+            <xacro:forearm_inertia m="0.3" r="${forearm_radius}" h="${forearm_length}" o_xyz="0 0 ${forearm_length/2}" o_rpy="0 0 0" />
             <collision>
                 <geometry>
                     <cylinder radius="${forearm_radius}" length="${forearm_length}"/>
@@ -43,7 +43,7 @@
                 <origin xyz="0 0 ${forearm_length/2}" rpy="0 0 0"/>
                 <material name="orange"/>
             </visual>
-            <xacro:hand_inertia m="0.3" r="${hand_radius}" h="${hand_length}" o_xyz="0 0 0" o_rpy="0 0 0" />
+            <xacro:hand_inertia m="0.3" r="${hand_radius}" h="${hand_length}" o_xyz="0 0 ${forearm_length/2}" o_rpy="0 0 0" />
             <collision>
                 <geometry>
                     <cylinder radius="${hand_radius}" length="${hand_length}"/>

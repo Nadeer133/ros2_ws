@@ -29,7 +29,7 @@
     <node pkg="ros_gz_sim" exec="create" args="-topic robot_description"/>
         
     <!-- 5. Joint State Publisher GUI --> 
-     <node pkg="joint_state_publisher_gui" exec="joint_state_publisher_gui" />
+     <!-- <node pkg="joint_state_publisher_gui" exec="joint_state_publisher_gui" /> -->
     
     <!-- 1. bridging gazebo and ros2-->
     <node pkg="ros_gz_bridge" exec="parameter_bridge">
