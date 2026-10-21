@@ -1,0 +1,420 @@
+<?xml version="1.0"?>
+<robot name="ackermann_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:include filename="common_properties.xacro"/>
+    <xacro:property name="base_length" value="1.2" />
+    <xacro:property name="base_width" value="0.35" />
+    <xacro:property name="base_height" value="0.2" />
+    <xacro:property name="wheel_radius" value="0.15" />
+    <xacro:property name="wheel_length" value="0.08" />
+    <!-- <xacro:property name="pi" value="3.14159" /> -->
+  <!-- ================= PARAMETERS ================= -->
+
+  <!--
+    Coordinate convention:
+      X = Forward
+      Y = Left
+      Z = Up
+
+    Wheelbase = 1.0 m
+    Track width = 0.6 m
+    Wheel radius = 0.15 m
+  -->
+
+  <!-- ================= CHASSIS ================= -->
+
+  <link name="base_link">
+
+    <visual>
+      <geometry>
+        <box size="${base_length} ${base_width} ${base_height}"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0.1 0.3 0.8 1.0"/>
+      </material>
+      <origin xyz="0 0 0.1" rpy="0 0 0"/>
+    </visual>
+
+    <collision>
+      <geometry>
+        <box size="${base_length} ${base_width} ${base_height}"/>
+      </geometry>
+      <origin xyz="0 0 0.1" rpy="0 0 0"/>
+    </collision>
+
+    <xacro:box_inertia m="15.0" x="1.2" y="0.5" z="0.2" o_xyz="0 0 0" o_rpy="0 0 0" />
+
+  </link>
+
+  <link name="base_footprint_link"/>
+
+  <joint name="base_footprint_joint" type="fixed">
+        <parent link="base_footprint_link"/>
+        <child link="base_link"/>
+        <origin xyz="0 0 0.15" rpy="0 0 0"/>
+        <axis xyz="0 0 0" />
+  </joint>
+
+<!-- ================= REAR LEFT RACK SUPPORT================= -->
+
+  <link name="rear_left_rack_support_link">
+    <visual>
+      <geometry>
+        <cylinder radius="0.01" length="${base_width/2}"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+
+    <xacro:wheel_inertia m="1.0" r="0.01" h="${base_width/2}" o_xyz="0 0 0" o_rpy="0 0 0" />
+
+  </link>
+  
+  <joint name="base_rear_left_rack_support_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="rear_left_rack_support_link"/>
+
+    <origin xyz="-0.5 ${(base_width/2)+0.05} 0" rpy="${pi/2} 0 0"/>
+    
+  </joint>
+
+  <!-- ================= REAR LEFT WHEEL ================= -->
+
+  <link name="rear_left_wheel">
+
+    <visual>
+      <origin rpy="1.5707963 0 0"/>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin rpy="1.5707963 0 0"/>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+      </geometry>
+    </collision>
+
+    <xacro:wheel_inertia m="1.0" r="0.15" h="0.08" o_xyz="0 0 0" o_rpy="1.5707963 0 0" />
+
+  </link>
+
+  <joint name="rear_left_rack_wheel_joint" type="continuous">
+
+    <parent link="rear_left_rack_support_link"/>
+    <child link="rear_left_wheel"/>
+
+    <origin xyz="0 0 ${-wheel_length}" rpy="1.57 0 0"/>
+
+    <axis xyz="0 1 0"/>
+
+    <dynamics damping="0.1"/>
+
+  </joint>
+
+
+  <!-- ================= REAR RIGHT RACK SUPPORT================= -->
+
+  <link name="rear_right_rack_support_link">
+    <visual>
+      <geometry>
+        <cylinder radius="0.01" length="${base_width/2}"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+
+    <xacro:wheel_inertia m="1.0" r="0.01" h="${base_width/2}" o_xyz="0 0 0" o_rpy="0 0 0" />
+
+  </link>
+  
+  <joint name="base_rear_right_rack_support_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="rear_right_rack_support_link"/>
+
+    <origin xyz="-0.5 ${-(base_width/2)-0.05} 0" rpy="${pi/2} 0 0"/>
+    
+  </joint>
+  <!-- ================= REAR RIGHT WHEEL ================= -->
+
+  <link name="rear_right_wheel">
+
+    <visual>
+      <origin rpy="1.5707963 0 0"/>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin rpy="1.5707963 0 0"/>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+      </geometry>
+    </collision>
+
+    <xacro:wheel_inertia m="1.0" r="0.15" h="0.08" o_xyz="0 0 0" o_rpy="1.5707963 0 0" />
+
+  </link>
+
+  <joint name="rear_right_rack_wheel_joint" type="continuous">
+
+    <parent link="rear_right_rack_support_link"/>
+    <child link="rear_right_wheel"/>
+
+    <origin xyz="0 0 ${wheel_length}" rpy="1.57 0 0"/>
+
+    <axis xyz="0 1 0"/>
+
+    <dynamics damping="0.1"/>
+
+  </joint>
+
+
+  <!-- ================= FRONT LEFT RACK SUPPORT================= -->
+
+  <link name="front_left_rack_support_link">
+    <visual>
+      <geometry>
+        <cylinder radius="0.01" length="${base_width/2}"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+
+    <xacro:wheel_inertia m="1.0" r="0.01" h="${base_width/2}" o_xyz="0 0 0" o_rpy="0 0 0" />
+
+  </link>
+  
+  <joint name="base_front_left_rack_support_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="front_left_rack_support_link"/>
+
+    <origin xyz="0.5 ${(base_width/2)+0.05} 0" rpy="${pi/2} 0 0"/>
+    
+  </joint>
+
+  <!-- ================= FRONT LEFT STEERING SUPPORT================= -->
+
+  <link name="front_left_steering_support_link">
+
+    <visual>
+      <geometry>
+        <cylinder radius="0.015" length="${base_width/6}"/>
+      </geometry>
+      <material name="grey"/>
+    </visual>
+
+    <xacro:wheel_inertia m="1.0" r="0.02" h="${base_width/4}" o_xyz="0 0 0" o_rpy="0 0 0" />
+
+  </link>
+
+  <joint name="front_left_rack_steering_support_joint" type="revolute">
+    <parent link="front_left_rack_support_link"/>
+    <child link="front_left_steering_support_link"/>
+
+    <origin xyz="0 0 ${-base_width/4}" rpy="${pi/2} 0 0"/>
+    <axis xyz="0 0 1"/>
+
+    <limit
+      lower="-0.6"
+      upper="0.6"
+      effort="100"
+      velocity="1.5"/>
+
+    <dynamics damping="0.2"/>
+    
+  </joint>
+
+
+  <!-- ================= FRONT LEFT WHEEL ================= -->
+
+  <link name="front_left_wheel">
+
+    <visual>
+      <origin rpy="1.5707963 0 0"/>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin rpy="1.5707963 0 0"/>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+      </geometry>
+    </collision>
+
+    <xacro:wheel_inertia m="0.2" r="${wheel_radius}" h="${wheel_length}" o_xyz="0 0 0" o_rpy="0 0 0" />
+
+
+  </link>
+
+  <joint name="front_left_steering_support_wheel_joint" type="continuous">
+
+    <parent link="front_left_steering_support_link"/>
+    <child link="front_left_wheel"/>
+
+    <origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
+
+    <axis xyz="0 1 0"/>
+
+    <dynamics damping="0.1"/>
+
+  </joint>
+
+<!-- ================= FRONT RIGHT RACK SUPPORT================= -->
+
+  <link name="front_right_rack_support_link">
+    <visual>
+      <geometry>
+        <cylinder radius="0.01" length="${base_width/2}"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+
+    <xacro:wheel_inertia m="1.0" r="0.01" h="${base_width/2}" o_xyz="0 0 0" o_rpy="0 0 0" />
+
+  </link>
+  
+  <joint name="base_front_right_rack_support_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="front_right_rack_support_link"/>
+
+    <origin xyz="0.5 ${-(base_width/2)-0.05} 0" rpy="${pi/2} 0 0"/>
+    
+  </joint>
+
+  <!-- ================= FRONT RIGHT STEERING SUPPORT================= -->
+
+  <link name="front_right_steering_support_link">
+
+    <visual>
+      <geometry>
+        <cylinder radius="0.015" length="${base_width/6}"/>
+      </geometry>
+      <material name="grey"/>
+    </visual>
+
+    <xacro:wheel_inertia m="1.0" r="0.02" h="${base_width/4}" o_xyz="0 0 0" o_rpy="0 0 0" />
+
+  </link>
+
+  <joint name="front_right_rack_steering_support_joint" type="revolute">
+    <parent link="front_right_rack_support_link"/>
+    <child link="front_right_steering_support_link"/>
+
+    <origin xyz="0 0 ${base_width/4}" rpy="${pi/2} 0 0"/>
+    <axis xyz="0 0 1"/>
+
+    <limit
+      lower="-0.6"
+      upper="0.6"
+      effort="100"
+      velocity="1.5"/>
+
+    <dynamics damping="0.2"/>
+    
+  </joint>
+
+  <!-- ================= FRONT RIGHT WHEEL ================= -->
+
+  <link name="front_right_wheel">
+
+    <visual>
+      <origin rpy="1.5707963 0 0"/>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin rpy="1.5707963 0 0"/>
+      <geometry>
+        <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+      </geometry>
+    </collision>
+
+    <xacro:wheel_inertia m="0.2" r="${wheel_radius}" h="${wheel_length}" o_xyz="0 0 0" o_rpy="0 0 0" />
+
+
+  </link>
+
+  <joint name="front_right_steering_support_wheel_joint" type="continuous">
+
+    <parent link="front_right_steering_support_link"/>
+    <child link="front_right_wheel"/>
+
+    <origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
+
+    <axis xyz="0 1 0"/>
+
+    <dynamics damping="0.1"/>
+
+  </joint>
+  
+  <!-- ================= ROS 2 CONTROL ================= -->
+
+  <ros2_control name="GazeboSimSystem" type="system">
+
+    <hardware>
+      <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+    </hardware>
+
+    Rear traction joints
+
+    <joint name="rear_left_rack_wheel_joint">
+      <command_interface name="velocity"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="rear_right_rack_wheel_joint">
+      <command_interface name="velocity"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    Front steering joints
+
+    <joint name="front_left_rack_steering_support_joint">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="front_right_rack_steering_support_joint">
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    Passive front wheel rotation
+
+    <joint name="front_left_steering_support_wheel_joint">
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="front_right_steering_support_wheel_joint">
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+  </ros2_control>
+
+
+  <!-- ================= GAZEBO CONTROL PLUGIN ================= -->
+
+  <gazebo>
+
+    <plugin
+      filename="libgz_ros2_control-system.so"
+      name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+
+      <parameters>
+        $(find ackermann_robot_description)/config/ackermann_controller.yaml
+      </parameters>
+
+    </plugin>
+
+  </gazebo>
+
+</robot>
