@@ -10,7 +10,7 @@
   <!-- ================= PARAMETERS ================= -->
 
   <!--
-    Coordinate convention:
+    Coordinate convention
       X = Forward
       Y = Left
       Z = Up
@@ -103,7 +103,7 @@
     <parent link="rear_left_rack_support_link"/>
     <child link="rear_left_wheel"/>
 
-    <origin xyz="0 0 ${-wheel_length}" rpy="1.57 0 0"/>
+    <origin xyz="0 0 ${-wheel_length}" rpy="-1.57 0 0"/>
 
     <axis xyz="0 1 0"/>
 
@@ -160,7 +160,7 @@
     <parent link="rear_right_rack_support_link"/>
     <child link="rear_right_wheel"/>
 
-    <origin xyz="0 0 ${wheel_length}" rpy="1.57 0 0"/>
+    <origin xyz="0 0 ${wheel_length}" rpy="-1.57 0 0"/>
 
     <axis xyz="0 1 0"/>
 
@@ -210,7 +210,7 @@
     <parent link="front_left_rack_support_link"/>
     <child link="front_left_steering_support_link"/>
 
-    <origin xyz="0 0 ${-base_width/4}" rpy="${pi/2} 0 0"/>
+    <origin xyz="0 0 ${-base_width/4}" rpy="${-pi/2} 0 0"/>
     <axis xyz="0 0 1"/>
 
     <limit
@@ -254,7 +254,7 @@
 
     <origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
 
-    <axis xyz="0 1 0"/>
+    <axis xyz="0 -1 0"/>
 
     <dynamics damping="0.1"/>
 
@@ -301,7 +301,7 @@
     <parent link="front_right_rack_support_link"/>
     <child link="front_right_steering_support_link"/>
 
-    <origin xyz="0 0 ${base_width/4}" rpy="${pi/2} 0 0"/>
+    <origin xyz="0 0 ${base_width/4}" rpy="${-pi/2} 0 0"/>
     <axis xyz="0 0 1"/>
 
     <limit
@@ -344,7 +344,7 @@
 
     <origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
 
-    <axis xyz="0 1 0"/>
+    <axis xyz="0 -1 0"/>
 
     <dynamics damping="0.1"/>
 
@@ -352,7 +352,7 @@
   
   <!-- ================= ROS 2 CONTROL ================= -->
 
-  <ros2_control name="GazeboSimSystem" type="system">
+  <ros2_control name="AckermannRobotSystem" type="system">
 
     <hardware>
       <plugin>gz_ros2_control/GazeboSimSystem</plugin>
@@ -410,7 +410,7 @@
       name="gz_ros2_control::GazeboSimROS2ControlPlugin">
 
       <parameters>
-        $(find ackermann_robot_description)/config/ackermann_controller.yaml
+        $(find my_ros2_bringup)/config/ackermann_controller.yaml
       </parameters>
 
     </plugin>
