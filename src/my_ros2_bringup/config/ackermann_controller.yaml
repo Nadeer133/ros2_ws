@@ -68,8 +68,8 @@ ackermann_steering_controller:
     # Front axle X = +0.5
     # Rear axle X  = -0.5
     #
-    # Wheelbase = 0.5 - (-0.5) = 1.0 m
-    wheelbase: 1.0
+    # Wheelbase = 0.35 - (-0.35) = 1.0 m
+    wheelbase: 0.7
 
 
     # Distance between the centres of the rear wheels.
