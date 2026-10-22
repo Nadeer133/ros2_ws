@@ -11,7 +11,6 @@ controller_manager:
     # 100 Hz means one update every 10 milliseconds.
     update_rate: 100
 
-
     # --------------------------------------------------------
     # JOINT STATE BROADCASTER
     # --------------------------------------------------------
@@ -28,7 +27,6 @@ controller_manager:
       #
       # Common output topic: /joint_states
       type: joint_state_broadcaster/JointStateBroadcaster
-
 
     # --------------------------------------------------------
     # ACKERMANN STEERING CONTROLLER
@@ -48,7 +46,6 @@ controller_manager:
       type: ackermann_steering_controller/AckermannSteeringController
 
 
-
 # ============================================================
 # ACKERMANN STEERING CONTROLLER PARAMETERS
 # ============================================================
@@ -64,163 +61,107 @@ ackermann_steering_controller:
     #
     # Unit: metres
     #
-    # URDF:
-    # Front axle X = +0.5
-    # Rear axle X  = -0.5
+    # Updated Xacro (base_length = 0.6 m):
+    # Front axle X = +0.25 m
+    # Rear axle X  = -0.25 m
     #
-    # Wheelbase = 0.35 - (-0.35) = 1.0 m
-    wheelbase: 0.7
+    # Wheelbase = 0.25 - (-0.25) = 0.50 m
+    wheelbase: 0.5
 
-
-    # Distance between the centres of the rear wheels.
-    #
-    # Unit: metres
-    #
-    # These are the traction wheels because our vehicle
-    # uses rear-wheel drive.
-    traction_track_width: 0.61
-
-
-    # Distance between the centres of the front wheels.
+    # Distance between the centres of the rear traction wheels.
     #
     # Unit: metres
     #
-    # Used to calculate the different steering angles
-    # required for the inner and outer front wheels.
-    steering_track_width: 0.625
+    # Updated Xacro (base_width = 0.30 m; wheel_length = 0.08 m):
+    # Rear wheel centre Y = +/- (0.30/2 + 0.05 + 0.08)
+    #                     = +/- 0.28 m
+    # Rear traction track width = 0.56 m
+    #
+    # Rear wheels are driven (rear-wheel drive).
+    traction_track_width: 0.56
 
+    # Distance between the front steering pivot / wheel centres.
+    #
+    # Unit: metres
+    #
+    # Updated Xacro (base_width = 0.30 m):
+    # Front steering centre Y = +/- (0.30/2 + 0.05 + 0.30/4)
+    #                         = +/- 0.275 m
+    # Front steering track width = 0.55 m
+    #
+    # Used to calculate different inner and outer steering angles.
+    steering_track_width: 0.55
 
     # Radius of the rear traction wheels.
     #
     # Unit: metres
     #
-    # Used to convert between wheel angular velocity
-    # and vehicle linear velocity.
-    #
-    # Linear velocity = Angular velocity × Wheel radius
+    # Linear velocity = wheel angular velocity * wheel radius.
     traction_wheels_radius: 0.15
-
 
     # Radius of the front steering wheels.
     #
     # Unit: metres
     #
-    # Used by the controller's steering kinematics
-    # and wheel-state calculations where applicable.
+    # Matches the front wheel geometry in the Xacro.
     steering_wheels_radius: 0.15
 
-
+    # Steering joint limits remain +/- 0.6 rad (about 34.4 degrees)
+    # in the Xacro. With the geometry above, the theoretical minimum
+    # turning radius measured at the rear axle midpoint is:
+    # R_min = wheelbase/tan(0.6) + steering_track_width/2
+    #       = 0.5/tan(0.6) + 0.55/2 ~= 1.006 m.
+    # This is a geometric limit, not a guarantee against tire slip.
 
     # --------------------------------------------------------
     # JOINT CONFIGURATION
     # --------------------------------------------------------
 
-    # Names of the two rear traction joints.
-    #
-    # These names MUST match the URDF joint names.
-    #
-    # The controller commands angular velocity
-    # through their velocity command interfaces.
+    # Rear traction joint names must match the Xacro.
+    # Controller commands their velocity interfaces.
     traction_joints_names:
       - rear_left_rack_wheel_joint
       - rear_right_rack_wheel_joint
 
-
-    # Names of the two front steering joints.
-    #
-    # These names MUST match the URDF joint names.
-    #
-    # The controller commands steering angles
-    # through their position command interfaces.
+    # Front steering joint names must match the Xacro.
+    # Controller commands their position interfaces.
     steering_joints_names:
       - front_left_rack_steering_support_joint
       - front_right_rack_steering_support_joint
-
-
 
     # --------------------------------------------------------
     # FEEDBACK CONFIGURATION
     # --------------------------------------------------------
 
-    # Determines which traction-wheel state interface
-    # is used for odometry feedback.
-    #
-    # false:
-    #   Use wheel angular velocity feedback.
-    #
-    # true:
-    #   Use wheel angular position feedback.
-    #   Wheel velocity is estimated from position changes.
-    #
-    # Both position and velocity state interfaces can
-    # still exist in the URDF regardless of this setting.
+    # false: use traction-wheel velocity state for odometry.
+    # true:  use traction-wheel position state for odometry.
+    # Both interfaces can still be present in the Xacro.
     position_feedback: false
 
-
-    # Determines whether odometry uses actual joint feedback
-    # or commanded motion.
-    #
-    # false:
-    #   Use measured joint states to estimate vehicle motion.
-    #
-    # true:
-    #   Use commanded motion to estimate vehicle motion
-    #   without relying on joint-state feedback.
-    #
-    # For our simulation, false is preferred because
-    # we want to observe the simulated wheel behaviour.
+    # false: use joint-state feedback for odometry.
+    # true:  estimate odometry from commanded motion (open-loop).
+    # Keep false to observe simulated joint feedback.
     open_loop: false
-
-
 
     # --------------------------------------------------------
     # COMMAND TIMEOUT
     # --------------------------------------------------------
 
-    # Maximum allowed time without receiving a new
-    # motion reference before it is considered stale.
-    #
-    # Unit: seconds
-    #
-    # Example:
-    #   If no new command arrives for 1 second,
-    #   the controller treats the previous command
-    #   as timed out and requests zero motion.
-    #
-    # This is a command timeout, not a complete
-    # vehicle safety or emergency-stop mechanism.
+    # Maximum time (seconds) without a new reference before
+    # the controller treats the command as stale and stops requesting
+    # motion. This is not an emergency-stop safety mechanism.
     reference_timeout: 1.0
-
-
 
     # --------------------------------------------------------
     # ODOMETRY CONFIGURATION
     # --------------------------------------------------------
 
-    # Name of the robot's body reference frame.
-    #
-    # Used as the child frame for odometry.
-    #
-    # Must correspond to a frame in the robot's TF tree.
+    # Robot body reference frame (odometry child frame).
     base_frame_id: base_link
 
-
-    # Name of the odometry reference frame.
-    #
-    # Represents the locally estimated position
-    # and orientation of the robot.
+    # Local odometry reference frame.
     odom_frame_id: odom
 
-
-    # Controls whether the controller publishes
-    # the odom -> base_link transform.
-    #
-    # true:
-    #   Publish the odometry TF transform.
-    #
-    # false:
-    #   Do not publish that transform.
-    #
-    # Only one component should publish the same
-    # odom -> base_link transform.
+    # Publish odom -> base_link TF. Ensure only one node publishes
+    # this same transform.
     enable_odom_tf: true
