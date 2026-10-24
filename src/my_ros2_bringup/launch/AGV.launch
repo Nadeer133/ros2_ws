@@ -1,7 +1,7 @@
 <launch>
     <!-- 1. Define paths -->
     <let name="urdf_path" 
-         value="$(find-pkg-share my_robot_description)/urdf/Ackermann_robot_model.xacro" />
+         value="$(find-pkg-share my_robot_description)/urdf/AGV_model.xacro" />
 
      <!-- 2. Gazebo_Worlds paths -->    
     <let name="worlds_path" 
