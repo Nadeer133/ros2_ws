@@ -1,6 +1,8 @@
 #include "rclcpp/rclcpp.hpp"
 #include "sensor_msgs/msg/image.hpp"
-
+#include <functional> //std::bind. std::placeholders
+#include <memory> //std::make_shared
+#include <string> //std::string
 
 class ObjectDetectionNode : public rclcpp::Node
 {
@@ -9,10 +11,10 @@ public:
     {
         this->declare_parameter("camera_topic","/camera/image_raw");
         topic_name = this->get_parameter("camera_topic").as_string();
-        Subscriber_=this->create_subscription<sensor_msgs::msg::Image>(topic_name,10,std::bind(&ObjectDetectionNode::Obj_Detct,this,std::placeholders::_1));
+        Subscriber_=this->create_subscription<sensor_msgs::msg::Image>(topic_name,10,std::bind(&ObjectDetectionNode::ImageCallback,this,std::placeholders::_1));
     }
 private:
-    void Obj_Detct(const sensor_msgs::msg::Image::SharedPtr Image_){
+    void ImageCallback(const sensor_msgs::msg::Image::SharedPtr Image_){
 
     }
 std::string topic_name;
