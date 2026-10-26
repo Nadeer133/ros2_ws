@@ -12,6 +12,7 @@ find_package(example_interfaces REQUIRED)
 find_package(my_ros2_interfaces REQUIRED)
 find_package(turtlesim REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
 
 add_executable(cpp_first_node_oop src/my_first_cpp_oop_node.cpp)
 ament_target_dependencies(cpp_first_node_oop rclcpp)
@@ -49,6 +50,8 @@ add_executable(Actv07_turtlesimProj src/Actv07_turtlesimProj.cpp)
 ament_target_dependencies(Actv07_turtlesimProj rclcpp my_ros2_interfaces turtlesim)
 add_executable(Actv07_turtlesimProj_2 src/Actv07_turtlesimProj_2.cpp)
 ament_target_dependencies(Actv07_turtlesimProj_2 rclcpp my_ros2_interfaces turtlesim geometry_msgs)
+add_executable(AGV_ObjectDetectionNode src/AGV_ObjectDetectionNode.cpp)
+ament_target_dependencies(AGV_ObjectDetectionNode rclcpp sensor_msgs)
 
 install(TARGETS
   cpp_first_node_oop
@@ -69,6 +72,7 @@ install(TARGETS
   Actv06_robot_news_station_PUB
   Actv07_turtlesimProj
   Actv07_turtlesimProj_2
+  AGV_ObjectDetectionNode
   DESTINATION lib/${PROJECT_NAME}
 )
 
