@@ -157,7 +157,7 @@ ackermann_steering_controller:
     # --------------------------------------------------------
 
     # Robot body reference frame (odometry child frame).
-    base_frame_id: base_link
+    base_frame_id: base_footprint_link
 
     # Local odometry reference frame.
     odom_frame_id: odom
