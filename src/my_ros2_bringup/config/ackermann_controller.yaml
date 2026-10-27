@@ -97,14 +97,14 @@ ackermann_steering_controller:
     # Unit: metres
     #
     # Linear velocity = wheel angular velocity * wheel radius.
-    traction_wheels_radius: 0.15
+    traction_wheels_radius: 0.12
 
     # Radius of the front steering wheels.
     #
     # Unit: metres
     #
     # Matches the front wheel geometry in the Xacro.
-    steering_wheels_radius: 0.15
+    steering_wheels_radius: 0.12
 
     # Steering joint limits remain +/- 0.6 rad (about 34.4 degrees)
     # in the Xacro. With the geometry above, the theoretical minimum

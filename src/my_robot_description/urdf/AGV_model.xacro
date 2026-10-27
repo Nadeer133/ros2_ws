@@ -47,7 +47,7 @@
   <joint name="base_footprint_joint" type="fixed">
         <parent link="base_footprint_link"/>
         <child link="base_link"/>
-        <origin xyz="0 0 0.15" rpy="0 0 0"/>
+        <origin xyz="0 0 0.12" rpy="0 0 0"/>
         <axis xyz="0 0 0" />
   </joint>
 
@@ -91,7 +91,7 @@
       </geometry>
     </collision>
 
-    <xacro:wheel_inertia m="1.0" r="0.15" h="0.08" o_xyz="0 0 0" o_rpy="1.5707963 0 0" />
+    <xacro:wheel_inertia m="1.0" r="${wheel_radius}" h="${wheel_length}" o_xyz="0 0 0" o_rpy="1.5707963 0 0" />
 
   </link>
 
@@ -148,7 +148,7 @@
       </geometry>
     </collision>
 
-    <xacro:wheel_inertia m="1.0" r="0.15" h="0.08" o_xyz="0 0 0" o_rpy="1.5707963 0 0" />
+    <xacro:wheel_inertia m="1.0" r="${wheel_radius}" h="${wheel_length}" o_xyz="0 0 0" o_rpy="1.5707963 0 0" />
 
   </link>
 
