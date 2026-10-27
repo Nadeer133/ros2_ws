@@ -9,7 +9,7 @@
 
     <!-- 3. bridging gazebo and ros2-->
     <let name="gazebo_config_path"
-         value="$(find-pkg-share my_ros2_bringup)/config/gazebo_bridge.yaml" />
+         value="$(find-pkg-share my_ros2_bringup)/config/AGV_bridge.yaml" />
 
     <!-- 4. Robot State Publisher -->
     <node pkg="robot_state_publisher" exec="robot_state_publisher">
@@ -34,7 +34,10 @@
     <let name="agv_rviz_config_path"
          value="$(find-pkg-share my_robot_description)/rviz/AGV_Rviz_Config.rviz"/>
 
-    <!-- 9. Joint State Broadcaster -->
+    <!-- 9. RViz2 node loading the custom config -->
+    <node pkg="rviz2" exec="rviz2" output="screen" args="-d $(var agv_rviz_config_path)"/>
+
+    <!-- 10. Joint State Broadcaster -->
     <node
     pkg="controller_manager"
     exec="spawner"
@@ -42,15 +45,15 @@
     args="joint_state_broadcaster --controller-manager /controller_manager"
     output="screen"/>
 
-    <!-- 10. Ackermann Steering Controller -->
+    <!-- 11. Ackermann Steering Controller -->
     <node
     pkg="controller_manager"
     exec="spawner"
     name="ackermann_controller_spawner"
-    args="ackermann_steering_controller --controller-manager /controller_manager"
+    args="ackermann_steering_controller --controller-manager /controller_manager --controller-ros-args=-r --controller-ros-args=/ackermann_steering_controller/tf_odometry:=/tf"
     output="screen"/>
 
-    <!-- 11. Keyboard Teleoperation -->
+    <!-- 12. Keyboard Teleoperation -->
     <node
     pkg="teleop_twist_keyboard"
     exec="teleop_twist_keyboard"
@@ -60,6 +63,4 @@
     args="--ros-args -p stamped:=true -r /cmd_vel:=/ackermann_steering_controller/reference"
     />
 
-    <!-- 12. RViz2 node loading the custom config -->
-    <node pkg="rviz2" exec="rviz2" output="screen" args="-d $(var agv_rviz_config_path)"/>
 </launch>
