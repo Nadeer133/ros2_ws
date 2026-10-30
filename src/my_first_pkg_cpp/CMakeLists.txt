@@ -13,6 +13,8 @@ find_package(my_ros2_interfaces REQUIRED)
 find_package(turtlesim REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(OpenCV REQUIRED)
+find_package(cv_bridge REQUIRED)
 
 add_executable(cpp_first_node_oop src/my_first_cpp_oop_node.cpp)
 ament_target_dependencies(cpp_first_node_oop rclcpp)
@@ -51,7 +53,9 @@ ament_target_dependencies(Actv07_turtlesimProj rclcpp my_ros2_interfaces turtles
 add_executable(Actv07_turtlesimProj_2 src/Actv07_turtlesimProj_2.cpp)
 ament_target_dependencies(Actv07_turtlesimProj_2 rclcpp my_ros2_interfaces turtlesim geometry_msgs)
 add_executable(AGV_ObjectDetectionNode src/AGV_ObjectDetectionNode.cpp)
-ament_target_dependencies(AGV_ObjectDetectionNode rclcpp sensor_msgs)
+ament_target_dependencies(AGV_ObjectDetectionNode rclcpp sensor_msgs OpenCV cv_bridge)
+add_executable(OpenCvTut src/OpenCvTut.cpp)
+ament_target_dependencies(OpenCvTut OpenCV)
 
 install(TARGETS
   cpp_first_node_oop
@@ -73,6 +77,7 @@ install(TARGETS
   Actv07_turtlesimProj
   Actv07_turtlesimProj_2
   AGV_ObjectDetectionNode
+  OpenCvTut
   DESTINATION lib/${PROJECT_NAME}
 )
 
