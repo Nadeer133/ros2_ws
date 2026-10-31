@@ -15,9 +15,11 @@ int main(){
         true,  //swap red and blue channels(bgr->rgb)
         false  // do not crop
     );
+
+    cv::dnn::Net net;
     try
     {
-        cv::dnn::Net net = cv::dnn::readNetFromONNX(model_path); //Net is an opencv class representing a deep neural network
+        net = cv::dnn::readNetFromONNX(model_path); //Net is an opencv class representing a deep neural network
 
         if(net.empty()){
             std::cerr<<"failed to load YOLO model"<<std::endl;
@@ -29,6 +31,17 @@ int main(){
     {
         std::cerr<<"OpenCV Error: "<< e.what() << std::endl; //e.what() returns a description of the error
         return 1;
+    }
+
+    net.setInput(input_tensor_); //providing input tensor to yolo model.
+    cv::Mat output=net.forward(); //execute the model and obtain predictions.
+    std::cout << "Inference completed!" << std::endl;
+    std::cout << "Output dimensions: " << output.dims << std::endl;
+
+    for (int i = 0; i < output.dims; i++)
+    {
+        std::cout << "Dimension " << i << ": "
+                  << output.size[i] << std::endl;
     }
 
     cv::imshow("image",image);
