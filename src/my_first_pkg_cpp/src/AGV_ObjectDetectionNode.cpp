@@ -26,9 +26,10 @@ public:
                 if(!fActv_publisher_){
                 RCLCPP_WARN(this->get_logger(),"Active publishers available");
                 fActv_publisher_=1;}
-                Subscriber_=this->create_subscription<sensor_msgs::msg::Image>(topic_name,10,std::bind(&ObjectDetectionNode::ImageCallback,this,std::placeholders::_1));
+        
             }
         });
+        Subscriber_=this->create_subscription<sensor_msgs::msg::Image>(topic_name,10,std::bind(&ObjectDetectionNode::ImageCallback,this,std::placeholders::_1));
         
     }
 private:
