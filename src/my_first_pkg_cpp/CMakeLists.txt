@@ -54,8 +54,8 @@ add_executable(Actv07_turtlesimProj_2 src/Actv07_turtlesimProj_2.cpp)
 ament_target_dependencies(Actv07_turtlesimProj_2 rclcpp my_ros2_interfaces turtlesim geometry_msgs)
 add_executable(AGV_ObjectDetectionNode src/AGV_ObjectDetectionNode.cpp)
 ament_target_dependencies(AGV_ObjectDetectionNode rclcpp sensor_msgs OpenCV cv_bridge)
-add_executable(OpenCvTut src/OpenCvTut.cpp)
-ament_target_dependencies(OpenCvTut OpenCV)
+add_executable(OpenCVDetctStopSign src/OpenCVDetctStopSign.cpp)
+ament_target_dependencies(OpenCVDetctStopSign OpenCV)
 
 install(TARGETS
   cpp_first_node_oop
@@ -77,7 +77,7 @@ install(TARGETS
   Actv07_turtlesimProj
   Actv07_turtlesimProj_2
   AGV_ObjectDetectionNode
-  OpenCvTut
+  OpenCVDetctStopSign
   DESTINATION lib/${PROJECT_NAME}
 )
 
