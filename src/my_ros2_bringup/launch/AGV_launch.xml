@@ -5,7 +5,7 @@
 
      <!-- Gazebo_Worlds paths -->    
     <let name="worlds_path" 
-         value="$(find-pkg-share my_ros2_bringup)/worlds/test_world.sdf" />
+         value="$(find-pkg-share my_ros2_bringup)/worlds/AGV_urban_world.sdf" />
 
     <!-- bridging gazebo and ros2-->
     <let name="gazebo_config_path"
@@ -27,7 +27,7 @@
     </include> 
 
     <!-- spawning the robot -->
-    <node pkg="ros_gz_sim" exec="create" args="-topic robot_description"/>
+    <node pkg="ros_gz_sim" exec="create" args="-topic robot_description -name AGV -x -30.0 -y 60.0 -z 0.0 -Y 0.0"/>
     
     <!-- bridging gazebo and ros2-->
     <node pkg="ros_gz_bridge" exec="parameter_bridge">
