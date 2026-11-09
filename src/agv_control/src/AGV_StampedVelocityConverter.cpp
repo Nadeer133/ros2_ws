@@ -27,21 +27,25 @@ public:
         });
         watchdogtimer_=this->create_wall_timer(100ms,std::bind(&StampedVelocityConverter::watchdogCallBack,this));
         subscriber_=this->create_subscription<geometry_msgs::msg::Twist>("/cmd_vel",1,std::bind(&StampedVelocityConverter::velocityCallBack,this,std::placeholders::_1));
-        publisher_=this->create_publisher<geometry_msgs::msg::TwistStamped>("/ackermann_steering_controller/reference",10);
+        publisher_=this->create_publisher<geometry_msgs::msg::TwistStamped>("/ackermann_steering_controller/reference",1);
     }
 private:
     void velocityCallBack(const geometry_msgs::msg::Twist::SharedPtr velocity_){
+        last_command_time=std::chrono::steady_clock::now();
+
         outputvelocity_.twist = *velocity_;
         outputvelocity_.header.stamp = this->now();
+        outputvelocity_.header.frame_id = "base_footprint_link";
+
         publisher_->publish(outputvelocity_);
     }
     void watchdogCallBack(){
         auto current_time=std::chrono::steady_clock::now();
         auto elapsedtime_=std::chrono::duration<double>(current_time-last_command_time).count();
-        geometry_msgs::msg::TwistStamped stopcommand_;
 
         if(elapsedtime_>0.5)
         {
+            geometry_msgs::msg::TwistStamped stopcommand_;
             stopcommand_.header.stamp=this->now();
             stopcommand_.header.frame_id="base_footprint_link";
             
