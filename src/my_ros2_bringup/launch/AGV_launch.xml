@@ -82,8 +82,8 @@
     <!-- TWIST TO TWISTSTAMPED CONVERTER -->
     <node
     pkg="agv_control"
-    exec="stamped_velocity_converter"
-    name="stamped_velocity_converter"
+    exec="AGV_StampedVelocityConverter"
+    name="AGV_StampedVelocityConverter"
     output="screen">
 
     <param name="use_sim_time" value="true"/>
