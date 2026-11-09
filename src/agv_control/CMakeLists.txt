@@ -17,10 +17,14 @@ add_executable(AGV_ObjectDetectionNode src/AGV_ObjectDetectionNode.cpp)
 ament_target_dependencies(AGV_ObjectDetectionNode rclcpp sensor_msgs OpenCV cv_bridge)
 add_executable(OpenCVDetctStopSign src/OpenCVDetctStopSign.cpp)
 ament_target_dependencies(OpenCVDetctStopSign OpenCV)
+add_executable(AGV_StampedVelocityConverter src/AGV_StampedVelocityConverter.cpp)
+ament_target_dependencies(AGV_StampedVelocityConverter rclcpp geometry_msgs)
+
 
 install(TARGETS
   AGV_ObjectDetectionNode
   OpenCVDetctStopSign
+  AGV_StampedVelocityConverter
   DESTINATION lib/${PROJECT_NAME}
 )
 
