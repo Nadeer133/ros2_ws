@@ -63,6 +63,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>30.000 8.600 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="road_S_SE">
@@ -80,6 +87,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>30.000 8.600 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="road_W_C">
@@ -97,6 +111,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>30.000 8.600 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="road_C_E">
@@ -114,6 +135,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>30.000 8.600 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="road_NW_N">
@@ -131,6 +159,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>30.000 8.600 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="road_N_NE">
@@ -148,6 +183,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>30.000 8.600 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="road_SW_W">
@@ -165,6 +207,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>8.600 30.000 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="road_W_NW">
@@ -182,6 +231,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>8.600 30.000 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="road_S_C">
@@ -199,6 +255,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>8.600 30.000 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="road_C_N">
@@ -216,6 +279,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>8.600 30.000 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="road_SE_E">
@@ -233,6 +303,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>8.600 30.000 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="road_E_NE">
@@ -250,6 +327,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>8.600 30.000 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="road_W_west_1">
@@ -267,6 +351,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>30.000 8.600 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="road_west_1_west_terminal">
@@ -284,6 +375,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>8.600 30.000 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="road_SW_south_1">
@@ -301,6 +399,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>8.600 30.000 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="road_south_1_south_terminal">
@@ -318,6 +423,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>30.000 8.600 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="road_N_north_1">
@@ -335,6 +447,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>8.600 30.000 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="road_north_1_north_terminal">
@@ -352,6 +471,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>30.000 8.600 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="road_E_east_1">
@@ -369,6 +495,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>30.000 8.600 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="road_east_1_east_terminal">
@@ -386,6 +519,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>8.600 30.000 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="junction_SW">
@@ -403,6 +543,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>8.600 8.600 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="junction_S">
@@ -420,6 +567,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>8.600 8.600 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="junction_SE">
@@ -437,6 +591,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>8.600 8.600 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="junction_W">
@@ -454,6 +615,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>8.600 8.600 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="junction_C">
@@ -471,6 +639,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>8.600 8.600 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="junction_E">
@@ -488,6 +663,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>8.600 8.600 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="junction_NW">
@@ -505,6 +687,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>8.600 8.600 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="junction_N">
@@ -522,6 +711,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>8.600 8.600 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="junction_NE">
@@ -539,6 +735,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>8.600 8.600 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="junction_west_1">
@@ -556,6 +759,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>8.600 8.600 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="junction_west_terminal">
@@ -573,6 +783,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>8.600 8.600 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="junction_south_1">
@@ -590,6 +807,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>8.600 8.600 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="junction_south_terminal">
@@ -607,6 +831,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>8.600 8.600 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="junction_north_1">
@@ -624,6 +855,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>8.600 8.600 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="junction_north_terminal">
@@ -641,6 +879,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>8.600 8.600 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="junction_east_1">
@@ -658,6 +903,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>8.600 8.600 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="junction_east_terminal">
@@ -675,6 +927,13 @@
             <diffuse>0.17 0.18 0.20 1</diffuse>
           </material>
         </visual>
+        <collision name="road_surface_collision">
+          <geometry>
+            <box>
+              <size>8.600 8.600 0.016</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="rail_SW_S_a">
