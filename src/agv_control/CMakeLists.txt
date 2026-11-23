@@ -12,6 +12,7 @@ find_package(geometry_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(OpenCV REQUIRED)
 find_package(cv_bridge REQUIRED)
+find_package(std_msgs REQUIRED)
 
 add_executable(AGV_ObjectDetectionNode src/AGV_ObjectDetectionNode.cpp)
 ament_target_dependencies(AGV_ObjectDetectionNode rclcpp sensor_msgs OpenCV cv_bridge)
@@ -19,12 +20,15 @@ add_executable(OpenCVDetctStopSign src/OpenCVDetctStopSign.cpp)
 ament_target_dependencies(OpenCVDetctStopSign OpenCV)
 add_executable(AGV_StampedVelocityConverter src/AGV_StampedVelocityConverter.cpp)
 ament_target_dependencies(AGV_StampedVelocityConverter rclcpp geometry_msgs)
+add_executable(AGV_FaultInjector src/AGV_FaultInjector.cpp)
+ament_target_dependencies(AGV_FaultInjector rclcpp sensor_msgs)
 
 
 install(TARGETS
   AGV_ObjectDetectionNode
   OpenCVDetctStopSign
   AGV_StampedVelocityConverter
+  AGV_FaultInjector
   DESTINATION lib/${PROJECT_NAME}
 )
 

@@ -84,7 +84,18 @@
     <node
     pkg="agv_control"
     exec="AGV_StampedVelocityConverter"
-    name="AGV_StampedVelocityConverter"
+    name="agv_stampedvelocityconverter"
+    output="screen">
+
+    <param name="use_sim_time" value="true"/>
+
+    </node>
+
+    <!-- Fault Injection Node -->
+    <node
+    pkg="agv_control"
+    exec="AGV_FaultInjector"
+    name="agv_faultinjector"
     output="screen">
 
     <param name="use_sim_time" value="true"/>
