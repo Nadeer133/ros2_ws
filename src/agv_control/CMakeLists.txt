@@ -14,6 +14,7 @@ find_package(OpenCV REQUIRED)
 find_package(cv_bridge REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(my_ros2_interfaces REQUIRED)
+find_package(action_msgs REQUIRED)
 
 add_executable(AGV_ObjectDetectionNode src/AGV_ObjectDetectionNode.cpp)
 ament_target_dependencies(AGV_ObjectDetectionNode rclcpp sensor_msgs OpenCV cv_bridge)
@@ -24,7 +25,7 @@ ament_target_dependencies(AGV_StampedVelocityConverter rclcpp geometry_msgs)
 add_executable(AGV_FaultInjector src/AGV_FaultInjector.cpp)
 ament_target_dependencies(AGV_FaultInjector rclcpp sensor_msgs)
 add_executable(AGV_SafetySupervision src/AGV_SafetySupervision.cpp)
-ament_target_dependencies(AGV_SafetySupervision rclcpp my_ros2_interfaces sensor_msgs geometry_msgs)
+ament_target_dependencies(AGV_SafetySupervision rclcpp my_ros2_interfaces sensor_msgs geometry_msgs action_msgs)
 
 install(TARGETS
   AGV_ObjectDetectionNode
