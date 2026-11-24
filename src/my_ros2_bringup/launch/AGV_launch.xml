@@ -102,6 +102,17 @@
 
     </node>
 
+    <!-- Safety Supervision Node -->
+    <node
+    pkg="agv_control"
+    exec="AGV_SafetySupervision"
+    name="agv_safetysupervision"
+    output="screen">
+
+    <param name="use_sim_time" value="true"/>
+
+    </node>
+
 
     <!-- Keyboard Teleoperation -->
     <!--

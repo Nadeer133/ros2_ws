@@ -15,6 +15,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "srv/LedState.srv"
   "msg/StateLed.msg"
   "srv/SpawnChase.srv"
+  "msg/AgvHealthState.msg"
  )
 ament_export_dependencies(rosidl_default_runtime)
 

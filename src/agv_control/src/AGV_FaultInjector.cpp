@@ -9,10 +9,10 @@ class FaultInjector : public rclcpp::Node
 public:
     FaultInjector() : Node("fault_injector"),lidarfaultcmd_(0)
     {
-        faultcmdsub_=this->create_subscription<std_msgs::msg::UInt8>("fault_command",10,std::bind(&FaultInjector::faultcmdCallBack,this,placeholders::_1));
+        faultcmdsub_=this->create_subscription<std_msgs::msg::UInt8>("agv_fault_command",10,std::bind(&FaultInjector::faultcmdCallBack,this,placeholders::_1));
         lidarsub_=this->create_subscription<sensor_msgs::msg::LaserScan>("/scan_raw",10,std::bind(&FaultInjector::faultinjCallBack,this,placeholders::_1));
         publisher_=this->create_publisher<sensor_msgs::msg::LaserScan>("/scan",10);
-
+        RCLCPP_INFO(this->get_logger(),"Fault Injection Node Active!");
     }
 private:
     void faultcmdCallBack(const std_msgs::msg::UInt8::SharedPtr faultcmd_){
